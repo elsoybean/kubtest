@@ -1,0 +1,14 @@
+{
+  "name": "cmlee-kubtest-query",
+  "version": "1.0.0",
+  "description": "Query Processor for Kubernetes Test",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Chris Lee <cmlee1014@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
