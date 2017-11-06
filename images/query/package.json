@@ -7,6 +7,10 @@
     "start": "node server.js"
   },
   "author": "Chris Lee <cmlee1014@gmail.com>",
+  "repository": {
+  	"type": "git",
+  	"url": "https://github.com/elsoybean/kubtest.git"
+  },
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2"
