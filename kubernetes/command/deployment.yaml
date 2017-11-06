@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: command
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: command
+        track: stable
+        version: 1.0.0
+    spec:
+      containers:
+        - name: query
+          image: "cmlee1014/kubtest-command"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: 0.2
+              memory: "50Mi"

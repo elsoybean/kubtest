@@ -1,4 +1,4 @@
 #!/bin/bash
-kubectl delete deployment query frontend
-kubectl delete service query frontend
+kubectl delete service query command frontend
+kubectl delete deployment query command frontend
 kubectl delete configmap nginx-frontend-conf
