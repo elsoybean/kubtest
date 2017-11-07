@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: "messagebus"
+spec:
+  selector:
+    app: "messagebus"
+  ports:
+    - name: amq
+      protocol: "TCP"
+      port: 5672
+      targetPort: 5672
+    - name: management
+      protocol: "TCP"
+      port: 15672
+      targetPort: 15672

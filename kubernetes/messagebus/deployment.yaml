@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: messagebus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: messagebus
+        track: stable
+    spec:
+      containers:
+        - name: rabbitmq
+          image: "rabbitmq:3.6.12-management"
+          ports:
+            - name: amq
+              containerPort: 5672
+            - name: management
+              containerPort: 15672
