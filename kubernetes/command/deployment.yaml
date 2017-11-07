@@ -20,4 +20,4 @@ spec:
           resources:
             limits:
               cpu: 0.2
-              memory: "50Mi"
+              memory: "200Mi"
