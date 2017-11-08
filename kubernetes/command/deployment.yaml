@@ -12,12 +12,23 @@ spec:
         version: 1.0.0
     spec:
       containers:
-        - name: query
-          image: "cmlee1014/kubtest-command"
-          ports:
-            - name: http
-              containerPort: 80
-          resources:
-            limits:
-              cpu: 0.2
-              memory: "200Mi"
+      - name: query
+        image: "cmlee1014/kubtest-command:latest"
+        ports:
+          - name: http
+            containerPort: 80
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "200Mi"
+        env:
+        - name: "ASPNETCORE_ENVIRONMENT"
+          value: "Kubernetes"
+        volumeMounts:
+        - name: secrets
+          mountPath: /app/secrets
+          readOnly: true
+      volumes:
+      - name: secrets
+        secret:
+          secretName: command-secret-appsettings

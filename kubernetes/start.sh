@@ -2,6 +2,7 @@
 kubectl create -f query/deployment.yaml
 kubectl create -f query/service.yaml
 
+kubectl create secret generic command-secret-appsettings --from-file=command/appsettings.secrets.json
 kubectl create -f command/deployment.yaml
 kubectl create -f command/service.yaml
 
