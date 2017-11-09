@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
-using RabbitMQ.Client;
+using command.Data;
+using command.Model;
 
 namespace command.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private readonly RabbitMQOptions _options;
+        private readonly IRepository<Foo> _fooRepository;
         private readonly ILogger _logger;
 
-        public ValuesController(IOptions<RabbitMQOptions> optionsAccessor, ILogger<ValuesController> logger)
+        public ValuesController(IRepository<Foo> fooRepository, ILogger<ValuesController> logger)
         {
-            _options = optionsAccessor.Value;
+            if (fooRepository == null)
+                throw new ArgumentNullException("fooRepository");
+
+            _fooRepository = fooRepository;
             _logger = logger;
         }
 
@@ -29,7 +31,11 @@ namespace command.Controllers
             _logger.LogDebug("Entering values get");
             try
             {
-                PublishMessage();
+                var foo = _fooRepository.GetById(Guid.NewGuid());
+                _logger.LogDebug("Model color: " + foo.Color);
+                foo.ChangeColor("green");
+                _fooRepository.Save(foo);
+                _logger.LogDebug("Model color: " + foo.Color);
             }
             catch (Exception e)
             {
@@ -62,26 +68,6 @@ namespace command.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-
-        private void PublishMessage() {
-            _logger.LogDebug("Publishing message to: " + _options.ConnectionString);
-            _logger.LogDebug("Echange Name: " + _options.Exchange ?? "<null>");
-
-            var routingKey = "info";
-            var message = "Hello World!";
-            var body = Encoding.UTF8.GetBytes(message);
-
-            var factory = new ConnectionFactory() { Uri = new Uri(_options.ConnectionString) };
-            using(var connection = factory.CreateConnection())
-            using(var channel = connection.CreateModel())
-            {
-                channel.ExchangeDeclare(_options.Exchange, ExchangeType.Topic, false, false, new Dictionary<string, object>());
-                channel.BasicPublish(exchange: _options.Exchange,
-                                     routingKey: routingKey,
-                                     basicProperties: null,
-                                     body: body);
-            }
         }
     }
 }
