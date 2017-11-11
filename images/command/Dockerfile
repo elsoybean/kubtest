@@ -4,6 +4,7 @@ COPY . .
 ENV ASPNETCORE_URLS http://+:80
 EXPOSE 80
 RUN dotnet restore
-RUN dotnet publish -o /app
+RUN dotnet publish -c Release -o /app
 WORKDIR /app
+RUN rm -rf /src
 ENTRYPOINT ["dotnet", "KubTest.WebApi.dll"]
