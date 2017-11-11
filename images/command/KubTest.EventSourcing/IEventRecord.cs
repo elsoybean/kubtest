@@ -6,6 +6,6 @@ namespace KubTest.EventSourcing
 	{		
 		Guid ModelId { get; }
 		string EventType { get; }
-		EventArgs EventArgs { get; }
+        IEvent Event { get; }
 	}
 }

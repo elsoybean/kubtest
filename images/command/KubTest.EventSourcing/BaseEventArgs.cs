@@ -2,11 +2,12 @@ using System;
 
 namespace KubTest.EventSourcing
 {
-	public class BaseEventArgs : EventArgs
-	{
-		public DateTime EventOccurred { get; private set; }
+    public class BaseEvent : IEvent
+    {
+        public DateTime EventOccurred { get; private set; }
+        public int Version { get; internal set; }
 
-		public BaseEventArgs()
+		public BaseEvent()
 		{
 			EventOccurred = DateTime.Now;
 		}

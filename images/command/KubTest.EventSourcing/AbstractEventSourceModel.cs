@@ -9,33 +9,51 @@ namespace KubTest.EventSourcing
 	{
 		public Guid Id { get; set; }
 
-		private List<EventArgs> _uncommittedEvents = new List<EventArgs>();
+		private List<IEvent> _uncommittedEvents = new List<IEvent>();
 
-		public void Raise<T>(T evt) where T : EventArgs
-		{
-			ApplyGenericEvent(evt);
-			_uncommittedEvents.Add(evt);
-		}
+        public int Version { get; internal set; }
 
-		public void ApplyAllEvents(IEnumerable<EventArgs> events)
+        private readonly object _lock = new object();
+        private bool _isCommitted = false;
+
+		public void Raise<T>(T evt) where T : IEvent
+        {
+            if (_isCommitted)
+                throw new InvalidOperationException("the model has already been committed");
+
+            lock (_lock)
+            {
+                var baseEvent = evt as BaseEvent;
+                if (baseEvent != null)
+                    baseEvent.Version = Version + _uncommittedEvents.Count + 1;
+
+                ApplyGenericEvent(evt);
+			    _uncommittedEvents.Add(evt);
+            }
+        }
+
+        public void ApplyAllEvents(IEnumerable<IEvent> events)
 		{
 			events.ToList().ForEach(ApplyGenericEvent);
 		}
 
-		public IEnumerable<EventArgs> Commit()
+		public IEnumerable<IEvent> Commit()
 		{
-			var commitingEvents = new List<EventArgs>(_uncommittedEvents);
-			_uncommittedEvents.Clear();
-			return commitingEvents;
-		}
+            lock (_lock)
+            {
+                var commitingEvents = new List<IEvent>(_uncommittedEvents);
+                _uncommittedEvents.Clear();
+			    return commitingEvents;
+            }
+        }
 
-		protected void ApplyGenericEvent(EventArgs evt)
+        protected void ApplyGenericEvent(IEvent evt)
 		{
 			try
 			{
-				typeof(IEventSource<>).MakeGenericType(evt.GetType()).GetMethod("ApplyEvent").Invoke(this, new[] { evt });
+                typeof(IEventSource<>).MakeGenericType(evt.GetType()).GetMethod("ApplyEvent").Invoke(this, new[] { evt });
 			}
-			catch (Exception e)
+			catch (TargetException e)
 			{
 				throw new InvalidOperationException(string.Format("model type {0} cannot handle event type {1}", this.GetType().Name, evt.GetType().Name), e);
 			}

@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 
 namespace KubTest.EventSourcing
 {
 	public interface IEventSourceModel : IModel
 	{
-		void Raise<T>(T evt) where T : EventArgs;
-		void ApplyAllEvents(IEnumerable<EventArgs> events);
-		IEnumerable<EventArgs> Commit();
+        int Version { get; }
+		void Raise<T>(T evt) where T : IEvent;
+		void ApplyAllEvents(IEnumerable<IEvent> events);
+		IEnumerable<IEvent> Commit();
 	}
 }

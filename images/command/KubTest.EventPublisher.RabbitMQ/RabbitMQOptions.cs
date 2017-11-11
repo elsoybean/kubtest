@@ -1,4 +1,4 @@
-namespace KubTest.WebApi
+namespace KubTest.EventPublisher.RabbitMQ
 {
     public class RabbitMQOptions
     {

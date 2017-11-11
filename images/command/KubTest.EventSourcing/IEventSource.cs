@@ -1,9 +1,7 @@
-using System;
-
 namespace KubTest.EventSourcing
 {
-	public interface IEventSource<in T> where T : EventArgs
-	{
+	public interface IEventSource<in T> where T : IEvent
+    {
 		void ApplyEvent(T eventArgs);
 	}
 }

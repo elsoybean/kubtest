@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using KubTest.EventSourcing;
@@ -31,7 +29,8 @@ namespace KubTest.WebApi
             _logger.LogDebug("Entering values get");
             try
             {
-                var foo = _fooRepository.GetById(Guid.NewGuid());
+                var id = Guid.NewGuid();
+                var foo = _fooRepository.GetById(id);
                 _logger.LogDebug("Model color: " + foo.Color);
                 foo.ChangeColor("green");
                 _fooRepository.Save(foo);

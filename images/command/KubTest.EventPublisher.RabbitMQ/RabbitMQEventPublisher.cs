@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using KubTest.EventSourcing;
 
-namespace KubTest.WebApi
+namespace KubTest.EventPublisher.RabbitMQ
 {
     public class RabbitMQEventPublisher : IEventPublisher
     {

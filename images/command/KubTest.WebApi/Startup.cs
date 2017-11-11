@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using KubTest.EventSourcing;
+using KubTest.EventStore.MongoDB;
+using KubTest.EventPublisher.RabbitMQ;
 using KubTest.Model;
 
 namespace KubTest.WebApi
@@ -31,13 +29,14 @@ namespace KubTest.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<RabbitMQOptions>(Configuration.GetSection("RabbitMQ"));
+            services.Configure<MongoDBOptions>(Configuration.GetSection("MongoDB"));
 
             // Add framework services.
             services.AddMvc();
 
             services.AddTransient<IRepository<Foo>, GenericEventSourceRepository<Foo>>();
             services.AddTransient<IEventPublisher, RabbitMQEventPublisher>();
-            services.AddTransient<IEventStore, MongoDBEventStore>();
+            services.AddSingleton<IEventStore, MongoDBEventStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

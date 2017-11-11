@@ -5,7 +5,7 @@ namespace KubTest.EventSourcing
 {
 	public interface IEventStore
 	{
-		IEnumerable<EventArgs> GetAllEventsForModelId(Guid id);
+		IEnumerable<IEvent> GetAllEventsForModelId(Guid id);
 		void StoreEvent(IEventRecord eventRecord);
 	}
 }
