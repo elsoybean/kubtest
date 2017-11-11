@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace command.Model
+namespace KubTest.EventSourcing
 {
 	public class AbstractEventSourceModel : IEventSourceModel
 	{
@@ -35,7 +35,7 @@ namespace command.Model
 			{
 				typeof(IEventSource<>).MakeGenericType(evt.GetType()).GetMethod("ApplyEvent").Invoke(this, new[] { evt });
 			}
-			catch (TargetException e)
+			catch (Exception e)
 			{
 				throw new InvalidOperationException(string.Format("model type {0} cannot handle event type {1}", this.GetType().Name, evt.GetType().Name), e);
 			}

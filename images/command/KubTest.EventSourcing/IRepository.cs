@@ -1,7 +1,6 @@
 using System;
-using command.Model;
 
-namespace command.Data
+namespace KubTest.EventSourcing
 {
 	public interface IRepository<T> where  T : IModel
 	{

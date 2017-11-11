@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace command.Model
+namespace KubTest.EventSourcing
 {
 	public interface IEventSourceModel : IModel
 	{

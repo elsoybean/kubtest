@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using command.Data;
-using command.Model;
+using KubTest.EventSourcing;
+using KubTest.Model;
 
-namespace command
+namespace KubTest.WebApi
 {
     public class Startup
     {

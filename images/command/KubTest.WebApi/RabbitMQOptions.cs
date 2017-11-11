@@ -1,4 +1,4 @@
-namespace command
+namespace KubTest.WebApi
 {
     public class RabbitMQOptions
     {

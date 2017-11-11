@@ -15,4 +15,8 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KubTest.EventSourcing\KubTest.EventSourcing.csproj" />
+    <ProjectReference Include="..\KubTest.Model\KubTest.Model.csproj" />
+  </ItemGroup>
 </Project>

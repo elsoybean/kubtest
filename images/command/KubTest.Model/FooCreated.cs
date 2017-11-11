@@ -1,6 +1,7 @@
 using System;
+using KubTest.EventSourcing;
 
-namespace command.Model
+namespace KubTest.Model
 {
 	public class FooCreated : BaseEventArgs  
 	{	

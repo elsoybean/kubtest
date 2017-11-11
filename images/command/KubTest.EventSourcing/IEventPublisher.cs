@@ -1,4 +1,4 @@
-namespace command.Data
+namespace KubTest.EventSourcing
 {
 	public interface IEventPublisher
 	{

@@ -1,6 +1,6 @@
 using System;
 
-namespace command.Data
+namespace KubTest.EventSourcing
 {
 	public interface IEventRecord
 	{		

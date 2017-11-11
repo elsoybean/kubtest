@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using command.Data;
-using command.Model;
+using KubTest.EventSourcing;
+using KubTest.Model;
 
-namespace command.Controllers
+namespace KubTest.WebApi
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller

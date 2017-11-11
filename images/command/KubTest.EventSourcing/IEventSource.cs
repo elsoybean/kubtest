@@ -1,6 +1,6 @@
 using System;
 
-namespace command.Model
+namespace KubTest.EventSourcing
 {
 	public interface IEventSource<in T> where T : EventArgs
 	{

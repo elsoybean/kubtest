@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using command.Model;
+using KubTest.EventSourcing;
+using KubTest.Model;
 
-namespace command.Data
+namespace KubTest.WebApi
 {
 	public class MongoDBEventStore : IEventStore
 	{

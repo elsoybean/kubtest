@@ -1,22 +1,18 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using command.Model;
 
-namespace command.Data
+namespace KubTest.EventSourcing
 {
 	public class GenericEventSourceRepository<T> : IRepository<T> where  T : IEventSourceModel, new()
 	{
         private readonly IEventPublisher _eventPublisher;
         private readonly IEventStore _eventStore;
-        private readonly ILogger _logger;
 
-		public GenericEventSourceRepository(IEventPublisher eventPublisher, IEventStore eventStore, ILogger<GenericEventSourceRepository<T>> logger)
+		public GenericEventSourceRepository(IEventPublisher eventPublisher, IEventStore eventStore)
 		{
             _eventPublisher = eventPublisher;
             _eventStore = eventStore;
-			_logger = logger;
 		}
 
 		public T GetById(Guid id)

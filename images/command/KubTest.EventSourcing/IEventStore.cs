@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace command.Data
+namespace KubTest.EventSourcing
 {
 	public interface IEventStore
 	{

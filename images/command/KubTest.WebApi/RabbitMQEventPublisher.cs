@@ -1,12 +1,13 @@
-using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Text;
 using Newtonsoft.Json;
+using RabbitMQ.Client;
+using KubTest.EventSourcing;
 
-namespace command.Data
+namespace KubTest.WebApi
 {
     public class RabbitMQEventPublisher : IEventPublisher
     {

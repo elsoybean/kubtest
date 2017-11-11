@@ -1,6 +1,6 @@
 using System;
 
-namespace command.Model
+namespace KubTest.EventSourcing
 {
 	public class BaseEventArgs : EventArgs
 	{
