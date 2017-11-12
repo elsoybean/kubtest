@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KubTest.EventSourcing\KubTest.EventSourcing.csproj" />
+    <ProjectReference Include="..\KubTest.Model\KubTest.Model.csproj" />
   </ItemGroup>
 
 </Project>

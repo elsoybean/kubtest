@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -33,8 +34,11 @@ namespace KubTest.WebApi
 
             // Add framework services.
             services.AddMvc();
+            services.Configure<RouteOptions>(options => {
+                options.ConstraintMap.Add("command", typeof(CommandNameConstraint));
+            });
 
-            services.AddTransient<IRepository<Foo>, GenericEventSourceRepository<Foo>>();
+            services.AddTransient<IRepository<Foo>, EventSourceRepository<Foo>>();
             services.AddTransient<IEventPublisher, RabbitMQEventPublisher>();
             services.AddSingleton<IEventStore, MongoDBEventStore>();
         }
