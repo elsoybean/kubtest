@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
  name: eventstore
 spec:
- serviceName: "eventstore"
+ serviceName: eventstore
  replicas: 3
  template:
    metadata:
@@ -34,7 +34,7 @@ spec:
  - metadata:
      name: mongo-persistent-storage
      annotations:
-       volume.beta.kubernetes.io/storage-class: "standard"
+       volume.beta.kubernetes.io/storage-class: standard
    spec:
      accessModes: [ "ReadWriteOnce" ]
      resources:

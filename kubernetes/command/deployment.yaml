@@ -12,7 +12,7 @@ spec:
         version: 1.0.0
     spec:
       containers:
-      - name: query
+      - name: command
         image: "cmlee1014/kubtest-command:latest"
         ports:
           - name: http
