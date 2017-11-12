@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using KubTest.EventSourcing;
 using KubTest.Model;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace KubTest.WebApi
 {
@@ -11,23 +9,10 @@ namespace KubTest.WebApi
     public class FooController : Controller
     {
         private readonly IRepository<Foo> _fooRepository;
-        private readonly IActionDescriptorCollectionProvider _provider;
 
         public FooController(IRepository<Foo> fooRepository)
         {
             _fooRepository = fooRepository ?? throw new ArgumentNullException(nameof(fooRepository));
-        }
-
-        [HttpGet("routes")]
-        public IActionResult GetRoutes()
-        {
-            var routes = _provider.ActionDescriptors.Items.Select(x => new {
-                Action = x.RouteValues["Action"],
-                Controller = x.RouteValues["Controller"],
-                Name = x.AttributeRouteInfo.Name,
-                Template = x.AttributeRouteInfo.Template
-            }).ToList();
-            return Ok(routes);
         }
 
         [HttpGet("{id}", Name = "FooLink")]
