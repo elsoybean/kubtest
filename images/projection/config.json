@@ -1,0 +1,6 @@
+{
+	"RabbitMQ": {
+        "ConnectionString": "amqp://localhost/",
+        "Exchange": "DefaultExchange"
+	}
+}

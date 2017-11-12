@@ -1,0 +1,23 @@
+{
+  "name": "projection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elsoybean/kubtest.git"
+  },
+  "author": "Chris Lee <cmlee1014@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elsoybean/kubtest/issues"
+  },
+  "homepage": "https://github.com/elsoybean/kubtest#readme",
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "underscore": "^1.8.3"
+  }
+}
