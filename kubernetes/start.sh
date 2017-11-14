@@ -5,6 +5,11 @@ kubectl create -f messagebus/service.yaml
 kubectl create -f eventstore/deployment.yaml
 kubectl create -f eventstore/service.yaml
 
+kubectl create -f ecdb/configmap.yaml
+kubectl create configmap ecdb-init --from-file=ecdb/init.sql
+kubectl create -f ecdb/deployment.yaml
+kubectl create -f ecdb/service.yaml
+
 kubectl create -f query/deployment.yaml
 kubectl create -f query/service.yaml
 

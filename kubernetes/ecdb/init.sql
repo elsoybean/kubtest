@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS ColorTracker (FooId char(36) not null, Color varchar(100) null);
