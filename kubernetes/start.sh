@@ -10,6 +10,11 @@ kubectl create configmap ecdb-init --from-file=ecdb/init.sql
 kubectl create -f ecdb/deployment.yaml
 kubectl create -f ecdb/service.yaml
 
+kubectl create secret generic projection-secret-config --from-file=projection/config.json
+kubectl create -f projection/deployment.yaml
+kubectl create -f projection/service.yaml
+
+kubectl create secret generic query-secret-config --from-file=query/config.json
 kubectl create -f query/deployment.yaml
 kubectl create -f query/service.yaml
 
