@@ -2,5 +2,8 @@
 	"RabbitMQ": {
         "ConnectionString": "amqp://localhost/",
         "Exchange": "DefaultExchange"
+	},
+	"MySQL": {
+		"ConnectionString": "mysql://localhost/kubtest"
 	}
 }
