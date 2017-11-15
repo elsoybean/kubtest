@@ -1,0 +1,5 @@
+{
+	"MySQL": {
+		"ConnectionString": "mysql://localhost/kubtest"
+	}
+}
